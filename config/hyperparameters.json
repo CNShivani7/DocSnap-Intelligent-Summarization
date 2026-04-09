@@ -1,0 +1,139 @@
+{
+  "project": "DocSnap: Intelligent Summarization for Fast Decision Making",
+  "student": "Chimalamarry Naga Shivani Sharma",
+  "enrollment": "A9920124015210(el)",
+  "institution": "Amity University Online",
+  "year": 2026,
+
+  "hardware": {
+    "platform": "Google Colab",
+    "gpu": "NVIDIA Tesla T4",
+    "gpu_ram_gb": 16,
+    "cuda_version": "12.2",
+    "python_version": "3.10"
+  },
+
+  "dataset": {
+    "name": "CNN/DailyMail",
+    "version": "3.0.0",
+    "source": "https://huggingface.co/datasets/abisee/cnn_dailymail",
+    "train_samples": 287113,
+    "validation_samples": 13368,
+    "test_samples": 11490,
+    "fine_tuning_samples": 500,
+    "evaluation_samples": 50,
+    "avg_article_length_words": 615,
+    "avg_summary_length_words": 44,
+    "total_unique_tokens": 67659,
+    "total_tokens": 1724383
+  },
+
+  "bert_extractive": {
+    "model_name": "bert-base-uncased",
+    "architecture": "BertForSequenceClassification",
+    "parameters": "110M",
+    "task": "sentence_classification_for_extractive_summarization",
+    "epochs": 3,
+    "batch_size": 8,
+    "learning_rate": 2e-5,
+    "optimizer": "AdamW",
+    "max_input_length": 512,
+    "training_loss_epoch1": 0.4821,
+    "training_loss_epoch2": 0.3605,
+    "training_loss_epoch3": 0.2958,
+    "final_accuracy": 0.875,
+    "rouge1": 0.2412,
+    "rouge2": 0.0583,
+    "rougeL": 0.1502
+  },
+
+  "t5_small": {
+    "model_name": "t5-small",
+    "architecture": "T5ForConditionalGeneration",
+    "parameters": "60M",
+    "task": "abstractive_summarization",
+    "prefix": "summarize: ",
+    "epochs": 3,
+    "batch_size": 4,
+    "learning_rate": 5e-5,
+    "optimizer": "AdamW",
+    "max_input_length": 512,
+    "max_target_length": 128,
+    "training_loss_epoch1": 2.2887,
+    "training_loss_epoch2": 2.1333,
+    "training_loss_epoch3": 2.0576,
+    "loss_reduction_pct": 10.1,
+    "rouge1": 0.3669,
+    "rouge2": 0.1485,
+    "rougeL": 0.2517
+  },
+
+  "t5_base": {
+    "model_name": "t5-base",
+    "architecture": "T5ForConditionalGeneration",
+    "parameters": "220M",
+    "task": "abstractive_summarization",
+    "prefix": "summarize: ",
+    "epochs": 3,
+    "batch_size": 4,
+    "learning_rate": 5e-5,
+    "optimizer": "AdamW",
+    "max_input_length": 512,
+    "max_target_length": 128,
+    "beam_search_beams": 4,
+    "training_loss_epoch1": 1.7193,
+    "training_loss_epoch2": 1.4822,
+    "training_loss_epoch3": 1.3320,
+    "loss_reduction_pct": 22.5,
+    "rouge1": 0.4584,
+    "rouge2": 0.2456,
+    "rougeL": 0.3352,
+    "huggingface_model": "https://huggingface.co/CNShivani7/DocSnap",
+    "model_size_mb": 892,
+    "gpu_ram_required_gb": 2,
+    "exceeds_bart_baseline": true,
+    "bart_baseline_rouge1": 0.4416,
+    "improvement_over_bart_pct": 3.8
+  },
+
+  "textrank": {
+    "type": "extractive",
+    "algorithm": "graph_based_sentence_ranking",
+    "similarity_metric": "cosine_similarity",
+    "vectorizer": "TF-IDF",
+    "library": "scikit-learn",
+    "num_sentences_output": 3,
+    "training_required": false,
+    "rouge1": 0.2730,
+    "rouge2": 0.0910,
+    "rougeL": 0.1776
+  },
+
+  "deployment": {
+    "flask_api": {
+      "framework": "Flask",
+      "avg_response_time_seconds": 2.07,
+      "endpoint": "/summarize",
+      "method": "POST",
+      "input_format": "JSON",
+      "output_format": "JSON"
+    },
+    "streamlit_ui": {
+      "platform": "HuggingFace Spaces",
+      "url": "https://huggingface.co/spaces/CNShivani7/DocSnap",
+      "avg_response_time_seconds": 1.79,
+      "cold_start_latency_seconds": "15-30"
+    }
+  },
+
+  "evaluation": {
+    "metric": "ROUGE (F1)",
+    "test_set_size": 50,
+    "dataset_split": "test",
+    "metrics_computed": ["ROUGE-1", "ROUGE-2", "ROUGE-L"],
+    "library": "rouge-score",
+    "hypothesis_h1_accepted": true,
+    "t5base_vs_textrank_improvement_pct": 68.1,
+    "abstractive_advantage_pct": 60.5
+  }
+}

@@ -1,0 +1,45 @@
+# DocSnap: Intelligent Summarization for Fast Decision Making
+# Requirements file — Python 3.10+
+# Install with: pip install -r requirements.txt
+
+# ── Deep Learning ─────────────────────────────────────────────
+torch>=2.1.0
+torchvision>=0.16.0
+
+# ── HuggingFace Ecosystem ────────────────────────────────────
+transformers>=4.36.0
+datasets>=2.16.0
+huggingface-hub>=0.20.0
+tokenizers>=0.15.0
+accelerate>=0.25.0
+
+# ── NLP Libraries ────────────────────────────────────────────
+nltk>=3.8.1
+spacy>=3.7.0
+# After install, download spaCy model:
+# python -m spacy download en_core_web_sm
+
+# ── Evaluation ───────────────────────────────────────────────
+rouge-score>=0.1.2
+
+# ── Data Processing ──────────────────────────────────────────
+pandas>=2.1.0
+numpy>=1.24.0
+scikit-learn>=1.3.0
+
+# ── Visualization ────────────────────────────────────────────
+matplotlib>=3.7.0
+seaborn>=0.13.0
+
+# ── Deployment — API ─────────────────────────────────────────
+flask>=3.0.0
+flask-cors>=4.0.0
+
+# ── Deployment — UI ──────────────────────────────────────────
+streamlit>=1.29.0
+gradio>=4.10.0
+
+# ── Utilities ────────────────────────────────────────────────
+tqdm>=4.66.0
+requests>=2.31.0
+python-dotenv>=1.0.0
