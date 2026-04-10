@@ -1,0 +1,18 @@
+Metric,TextRank,BERT,T5-small,T5-base,BART_Baseline_Lewis2020
+Type,Extractive,Extractive,Abstractive,Abstractive,Abstractive
+Parameters,None (graph-based),110M,60M,220M,400M
+Training_Required,No,Yes,Yes,Yes,Yes
+Fine_Tuned_On,N/A,CNN/DailyMail (500),CNN/DailyMail (500),CNN/DailyMail (500),CNN/DailyMail (full)
+Epochs,N/A,3,3,3,N/A
+Batch_Size,N/A,8,4,4,N/A
+Learning_Rate,N/A,2e-5,5e-5,5e-5,N/A
+Final_Training_Loss,N/A,0.2958,2.0576,1.3320,N/A
+ROUGE-1,0.2730,0.2412,0.3669,0.4584,0.4416
+ROUGE-2,0.0910,0.0583,0.1485,0.2456,N/A
+ROUGE-L,0.1776,0.1502,0.2517,0.3352,N/A
+Avg_Output_Length_words,97,39,58,43,N/A
+Human_Reference_Length_words,41,41,41,41,41
+Flask_Response_Time_seconds,0.12,0.85,1.42,2.07,N/A
+Abstractive_Advantage_over_TextRank_ROUGE1,Baseline,-11.7%,+34.4%,+68.1%,+61.8%
+Exceeds_BART_Baseline,No,No,No,Yes (+3.8%),Baseline
+Hypothesis_H1_Supported,No,No,No,Yes,N/A
